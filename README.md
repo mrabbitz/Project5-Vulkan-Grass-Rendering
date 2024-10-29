@@ -1,10 +1,11 @@
 Vulkan Grass Rendering
 ==================================
 
-**University of Pennsylvania, CIS 565: GPU Programming and Architecture, Project 5**
+**University of Pennsylvania, CIS 5650: GPU Programming and Architecture, Project 5**
 
-* (TODO) YOUR NAME HERE
-* Tested on: (TODO) Windows 22, i7-2222 @ 2.22GHz 22GB, GTX 222 222MB (Moore 2222 Lab)
+* Michael Rabbitz
+  * [LinkedIn](https://www.linkedin.com/in/mike-rabbitz)
+* Tested on: Windows 10, i7-9750H @ 2.60GHz 32GB, RTX 2060 6GB (Personal)
 
 ### (TODO: Your README)
 
