@@ -6,12 +6,23 @@ layout(set = 0, binding = 0) uniform CameraBufferObject {
     mat4 proj;
 } camera;
 
-// TODO: Declare fragment shader inputs
+// DONE: Declare fragment shader inputs
+
+layout(location = 0) in vec3 frag_pos; // Blade Position in world space
+layout(location = 1) in vec3 frag_n;   // Blade Normal in world space
+layout(location = 2) in vec2 frag_uv;
 
 layout(location = 0) out vec4 outColor;
 
 void main() {
-    // TODO: Compute fragment color
+    // DONE: Compute fragment color
 
-    outColor = vec4(1.0);
+    vec3 grass_color = vec3(0.25, 0.75, 0.25);
+
+    vec3 light_dir = normalize(vec3(0.33, -0.33, -0.33));
+    float lambert = clamp(dot(frag_n, light_dir), 0.25, 0.99);
+
+    vec4 lambert_color = vec4(grass_color * lambert, 1.0);
+
+    outColor = mix(vec4(frag_uv.x, frag_uv.y, 0.0, 1.0), lambert_color, 1.0);
 }
