@@ -36,8 +36,14 @@ The base code includes a basic Vulkan setup with a compute pipeline and graphics
 
 ### Orientation Culling
 
+![](img/orientation_culling.gif)
+
 ### View-Frustum Culling
 
+![](img/frustrum_culling.gif)
+
 ### Distance Culling
+
+![](img/distance_culling.gif)
 
 ## Part 4: Performance Analysis
