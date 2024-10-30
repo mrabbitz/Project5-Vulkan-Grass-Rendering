@@ -48,7 +48,10 @@ The base code includes a basic Vulkan setup with a compute pipeline and graphics
 
 ## Part 4: Performance Analysis
 
-![](img/test_scene.PNG)
+|Test Scene|
+|:--:|
+|![](img/test_scene.PNG) <tr></tr>|
+
 
 ### Runtime vs Blade Count
 
