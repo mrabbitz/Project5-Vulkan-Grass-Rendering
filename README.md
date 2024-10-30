@@ -47,7 +47,8 @@ The base code includes a basic Vulkan setup with a compute pipeline and graphics
 ![](img/distance_culling.gif)
 
 ## Part 4: Performance Analysis
-
+- Frames Per Second (FPS) is the measurment of performance in this section. FPS is measured using a GLFW timer within the main loop.
+- The Test Scene is positioned to both render many glass blades as we increase the count, as well as apply all three culling options.
 |Test Scene|
 |:--:|
 |![](img/test_scene.PNG) <tr></tr>|
