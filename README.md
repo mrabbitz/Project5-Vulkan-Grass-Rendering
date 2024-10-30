@@ -66,6 +66,7 @@ In this technique, blades beyond a certain distance are culled in buckets, with 
 - Frames Per Second (FPS) is the measurment of performance in this section. FPS is measured using a GLFW timer within the main loop.
 - The Test Scene is positioned to render many grass blades as we increase the count, and to apply all three culling options.
 
+
 |Test Scene|
 |:--:|
 |![](img/test_scene.PNG) <tr></tr>|
@@ -73,6 +74,7 @@ In this technique, blades beyond a certain distance are culled in buckets, with 
 ### Runtime vs Blade Count
 - Culling ON refers to when all three culling options are enabled.
 - Culling OFF refers to when all three culling options are disabled.
+
 
 ![](img/runtime_blade_count.png)
 
@@ -94,6 +96,8 @@ In this technique, blades beyond a certain distance are culled in buckets, with 
 
 ### Runtime vs Culling Options
 - Blade Count is 2<sup>16</sup> for the following tests.
+
+
 ![](img/runtime_culling.png)
 
 |      Culling Option(s)     | FPS |
