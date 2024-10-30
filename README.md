@@ -47,3 +47,11 @@ The base code includes a basic Vulkan setup with a compute pipeline and graphics
 ![](img/distance_culling.gif)
 
 ## Part 4: Performance Analysis
+
+### Runtime vs Blade Count
+
+![](img/runtime_blade_count.png)
+
+### Runtime vs Culling Options
+
+![](img/runtime_culling.png)
