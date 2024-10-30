@@ -16,33 +16,49 @@ This project is an implementation of techniques described in [Responsive Real-Ti
 The base code includes a basic Vulkan setup with a compute pipeline and graphics pipelines. This implementation focuses on developing the shaders for the grass compute and graphics pipelines, along with custom descriptor bindings necessary to manage data between these pipelines.
 
 ## Part 2: Simulating Forces
+To create realistic movement, we simulate environmental forces on each grass blade using a compute shader.
 
-### No Forces
+Before we get into the simulated forces, here is an image showing the static, initial setup of the grass blades with no forces applied.
 ![](img/no_forces.PNG)
 
 ### Gravity
+The first simulated force is gravity, which is an application of the earth's downward gravitational force at 9.81 m/s. As we can see, with no kind of resistance against this, the blades are flattened to the ground plane.
 
-![](img/gravity.PNG)
+|Gravity|
+|:--:|
+|![](img/gravity.PNG) <tr></tr>|
 
 ### Recovery
+Next we add the second simulated force is recovery, in which we implement a recovery force to counter gravity and return the blades to equilibrium, following Hooke's law as derived in the paper.
 
-![](img/gravity_recovery.PNG)
+|Gravity + Recovery|
+|:--:|
+|![](img/gravity_recovery.PNG) <tr></tr>|
 
 ### Wind
+Last we add the third simulated force is wind, in which we implement a custom wind function to influence the grass, considering the alignment of the blades with the wind direction.
 
-![](img/grass.gif)
+The arbitrary wind function we use is simple: WIND_INTENSITY * vec3(cos(totalTime), 0.0, sin(totalTime)) * directional_alignment * height_ratio
+
+|Gravity + Recovery + Wind|
+|:--:|
+|![](img/grass.gif) <tr></tr>|
 
 ## Part 3: Culling Tests
+To optimize performance, various culling methods are implemented to avoid rendering blades that don’t contribute to the final image:
 
 ### Orientation Culling
+In this technique, blades near-perpendicular or perpendicular to the camera are culled to prevent rendering artifacts.
 
 ![](img/orientation_culling.gif)
 
 ### View-Frustum Culling
+In this technique, blades outside the view-frustum are excluded based on visibility tests for each Bezier curve.
 
 ![](img/frustrum_culling.gif)
 
 ### Distance Culling
+In this technique, blades beyond a certain distance are culled in buckets, with more distant blades culled more aggressively.
 
 ![](img/distance_culling.gif)
 
@@ -53,8 +69,8 @@ The base code includes a basic Vulkan setup with a compute pipeline and graphics
 |:--:|
 |![](img/test_scene.PNG) <tr></tr>|
 
-
 ### Runtime vs Blade Count
+- Culling ON refers to when all three culling options are enabled.
 
 ![](img/runtime_blade_count.png)
 
@@ -69,6 +85,27 @@ The base code includes a basic Vulkan setup with a compute pipeline and graphics
 |2<sup>22</sup> |4                  |16                 |
 |2<sup>24</sup> |1                  |4                  |
 
-### Runtime vs Culling Options
+**Observations**
+- **Trend:** As the blade count increases, FPS decreases significantly in both cases, but with culling enabled, FPS remains higher.
+- **Culling Efficiency:** At higher blade counts, culling's impact on performance becomes much more noticeable, maintaining playable FPS even as the blade count reaches 2<sup>20</sup>.
+- **Culling Overhead:** There’s minimal overhead for culling at lower blade counts, as FPS differences between Culling ON and OFF remain small.
 
+### Runtime vs Culling Options
+- Blade Count is 2<sup>16</sup> for the following tests.
 ![](img/runtime_culling.png)
+
+|      Culling Option(s)     | FPS |
+| -------------------------- | --- |
+|Culling OFF                 |195  |
+|Orientation                 |225  |
+|View Frustrum               |200  |
+|Distance                    |500  |
+|Orientation + View Frustrum |215  |
+|Orientation + Distance      |530  |
+|View Frustrum + Distance    |505  |
+|All Culling                 |545  |
+
+**Observations**
+- **Distance Culling Effectiveness:** Distance culling alone boosts FPS by over 2x, suggesting that rendering fewer distant blades is the most impactful optimization.
+- **Combination Benefits:** Combining orientation and distance culling achieves the best performance increase, maximizing FPS at higher counts.
+- **All Culling:** Using all three techniques offers slightly better performance than combining just two, but the difference is less significant than distance culling alone, indicating diminishing returns when all options are combined.
