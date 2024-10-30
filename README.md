@@ -113,5 +113,4 @@ In this technique, blades beyond a certain distance are culled in buckets, with 
 
 **Observations**
 - **Distance Culling Effectiveness:** Distance culling alone boosts FPS by over 2x, suggesting that rendering fewer distant blades is the most impactful optimization.
-- **Combination Benefits:** Combining orientation and distance culling achieves the best performance increase, maximizing FPS at higher counts.
-- **All Culling:** Using all three techniques offers slightly better performance than combining just two, but the difference is less significant than distance culling alone, indicating diminishing returns when all options are combined.
+- **All Culling:** Using all three techniques provides a slight additional FPS boost over distance culling alone, though the improvement is minor, indicating diminishing returns with combined techniques.
