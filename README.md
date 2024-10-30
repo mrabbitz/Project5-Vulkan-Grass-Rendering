@@ -57,6 +57,17 @@ The base code includes a basic Vulkan setup with a compute pipeline and graphics
 
 ![](img/runtime_blade_count.png)
 
+|  Blade Count  | Culling OFF (FPS) | Culling ON (FPS)  |
+| ------------- | ----------------- | ----------------- |
+|2<sup>10</sup> |1235               |1245               |
+|2<sup>12</sup> |1145               |1230               |
+|2<sup>14</sup> |565                |1130               |
+|2<sup>16</sup> |195                |545                |
+|2<sup>18</sup> |62                 |180                |
+|2<sup>20</sup> |17                 |60                 |
+|2<sup>22</sup> |4                  |16                 |
+|2<sup>24</sup> |1                  |4                  |
+
 ### Runtime vs Culling Options
 
 ![](img/runtime_culling.png)
