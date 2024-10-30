@@ -72,6 +72,7 @@ In this technique, blades beyond a certain distance are culled in buckets, with 
 
 ### Runtime vs Blade Count
 - Culling ON refers to when all three culling options are enabled.
+- Culling OFF refers to when all three culling options are disabled.
 
 ![](img/runtime_blade_count.png)
 
