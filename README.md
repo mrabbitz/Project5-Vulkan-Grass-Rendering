@@ -11,9 +11,9 @@ Vulkan Grass Rendering
 
 ## Part 1: Introduction
 
-This project is an implementation of techniques described in [Responsive Real-Time Grass Rendering for General 3D Scenes](https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf), using Vulkan to build an efficient grass simulator and renderer. Grass blades are represented as Bezier curves, with compute shaders handling the physics and culling processes, while graphics shaders manage the rendering. The goal is to achieve realistic, performance-efficient grass rendering suitable for real-time applications.
+This project is an implementation of techniques described in [Responsive Real-Time Grass Rendering for General 3D Scenes](https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf), using Vulkan to build an efficient grass simulator and renderer. Grass blades are represented as Bezier curves, with a compute shader handling physics and culling processes, while graphics shaders manage rendering. The goal is to achieve realistic, performance-efficient grass rendering suitable for real-time applications.
 
-The base code includes a basic Vulkan setup with a compute pipeline and graphics pipelines. This implementation focuses on developing the shaders for the grass compute and graphics pipelines, along with custom descriptor bindings necessary to manage data between these pipelines.
+The base code includes a basic Vulkan setup with a compute pipeline and two graphics pipelines. This implementation focuses on developing shaders for the grass compute and graphics pipelines, along with custom descriptor bindings necessary to manage data between these pipelines.
 
 ## Part 2: Simulating Forces
 To create realistic movement, we simulate environmental forces on each grass blade using a compute shader.
@@ -22,23 +22,23 @@ Before we get into the simulated forces, here is an image showing the static, in
 ![](img/no_forces.PNG)
 
 ### Gravity
-The first simulated force is gravity, which is an application of the earth's downward gravitational force at 9.81 m/s. As we can see, with no kind of resistance against this, the blades are flattened to the ground plane.
+The first simulated force is gravity, which is an application of the Earth's downward gravitational force at 9.81 m/s<sup>2</sup>. As we can see, without a counter force, the blades are flattened to the ground plane.
 
 |Gravity|
 |:--:|
 |![](img/gravity.PNG) <tr></tr>|
 
 ### Recovery
-Next we add the second simulated force is recovery, in which we implement a recovery force to counter gravity and return the blades to equilibrium, following Hooke's law as derived in the paper.
+Next, we add the second simulated force, recovery, which counteracts gravity and returns the blades to equilibrium, following Hooke's law as derived in the paper.
 
 |Gravity + Recovery|
 |:--:|
 |![](img/gravity_recovery.PNG) <tr></tr>|
 
 ### Wind
-Last we add the third simulated force is wind, in which we implement a custom wind function to influence the grass, considering the alignment of the blades with the wind direction.
+Finally, we add the third simulated force, wind, by implementing a custom wind function to influence the grass, considering the alignment of the blades with the wind direction.
 
-The arbitrary wind function we use is simple: WIND_INTENSITY * vec3(cos(totalTime), 0.0, sin(totalTime)) * directional_alignment * height_ratio
+The arbitrary wind function we use is: WIND_INTENSITY * vec3(cos(totalTime), 0.0, sin(totalTime)) * directional_alignment * height_ratio
 
 |Gravity + Recovery + Wind|
 |:--:|
@@ -64,7 +64,7 @@ In this technique, blades beyond a certain distance are culled in buckets, with 
 
 ## Part 4: Performance Analysis
 - Frames Per Second (FPS) is the measurment of performance in this section. FPS is measured using a GLFW timer within the main loop.
-- The Test Scene is positioned to both render many glass blades as we increase the count, as well as apply all three culling options.
+- The Test Scene is positioned to render many grass blades as we increase the count, and to apply all three culling options.
 |Test Scene|
 |:--:|
 |![](img/test_scene.PNG) <tr></tr>|
