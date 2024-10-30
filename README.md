@@ -65,6 +65,7 @@ In this technique, blades beyond a certain distance are culled in buckets, with 
 ## Part 4: Performance Analysis
 - Frames Per Second (FPS) is the measurment of performance in this section. FPS is measured using a GLFW timer within the main loop.
 - The Test Scene is positioned to render many grass blades as we increase the count, and to apply all three culling options.
+
 |Test Scene|
 |:--:|
 |![](img/test_scene.PNG) <tr></tr>|
