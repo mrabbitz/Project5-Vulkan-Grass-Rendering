@@ -9,7 +9,7 @@
 #define DISTANCE_CULLING_N_BUCKETS 16
 #define DISTANCE_CULLING_MAX 32
 
-#define WIND_INTENSITY 30.0
+#define WIND_INTENSITY 1.0
 
 #define WORKGROUP_SIZE 32
 layout(local_size_x = WORKGROUP_SIZE, local_size_y = 1, local_size_z = 1) in;
