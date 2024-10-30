@@ -9,6 +9,8 @@
 #define DISTANCE_CULLING_N_BUCKETS 16
 #define DISTANCE_CULLING_MAX 32
 
+#define WIND_INTENSITY 1.0
+
 #define WORKGROUP_SIZE 32
 layout(local_size_x = WORKGROUP_SIZE, local_size_y = 1, local_size_z = 1) in;
 
@@ -105,7 +107,7 @@ void main() {
     vec3 windFunction = vec3(cos(totalTime), 0.0, sin(totalTime));
     float directional_alignment = 1.0 - abs(dot(normalize(windFunction), normalize(v2 - v0)));
     float height_ratio = dot(v2 - v0, up) / height;
-    vec3 wind = windFunction * directional_alignment * height_ratio;
+    vec3 wind = WIND_INTENSITY * windFunction * directional_alignment * height_ratio;
 
     // TOTAL FORCE
     vec3 tv2 = (gravity + recovery + wind) * deltaTime;
