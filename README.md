@@ -17,6 +17,27 @@ The base code includes a basic Vulkan setup with a compute pipeline and graphics
 
 ## Part 2: Simulating Forces
 
+### No Forces
+![](img/no_forces.PNG)
+
+### Gravity
+
+![](img/gravity.PNG)
+
+### Recovery
+
+![](img/gravity_recovery.PNG)
+
+### Wind
+
+![](img/grass.gif)
+
 ## Part 3: Culling Tests
+
+### Orientation Culling
+
+### View-Frustum Culling
+
+### Distance Culling
 
 ## Part 4: Performance Analysis
